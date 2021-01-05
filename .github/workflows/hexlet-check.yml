@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install project
+        run: make install
+
       - name: Eslint check
         run: make lint
 
