@@ -1,43 +1,29 @@
 import readlineSync from 'readline-sync';
-import name from './cli.js';
-
-const gameRounds = 3;
-const minNumber = 1;
-const maxNumber = 4;
 
 // The maximum is inclusive and the minimum is inclusive
-function getRandomIntInclusive() {
+function getRandomIntInclusive(minNumber, maxNumber) {
   const min = Math.ceil(minNumber);
   const max = Math.floor(maxNumber);
+
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getGameData() {
-  const data = [];
-  for (let i = 1; i <= gameRounds; i += 1) {
-    const number = getRandomIntInclusive();
-    const rightAnswer = ((number % 2) === 0) ? 'yes' : 'no';
+const gameRounds = 3;
 
-    data.push({ question: number, rightAnswer });
-  }
-
-  return data;
-}
-
-const runEvenGame = () => {
+const runGamesEngine = (gameDescription, gameData) => {
   console.log('Welcome to the Brain Games!');
 
+  const name = readlineSync.question('May I have your name?\n');
   const greetingUser = `Hello, ${name}`;
   console.log(greetingUser);
 
-  const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
   console.log(gameDescription);
-
-  const gameData = getGameData();
 
   for (let i = 0; i < gameRounds; i += 1) {
     const round = gameData[i];
+
     const answer = readlineSync.question(`Question: ${round.question}\n`);
+    console.log(`Your answer: ${answer}`);
 
     if (answer === round.rightAnswer) {
       console.log('Correct!');
@@ -54,4 +40,4 @@ const runEvenGame = () => {
   return true;
 };
 
-export default runEvenGame;
+export { getRandomIntInclusive, gameRounds, runGamesEngine };
