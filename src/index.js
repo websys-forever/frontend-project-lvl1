@@ -16,6 +16,12 @@ function getRandomIntInclusive(minNumber, maxNumber) {
 const gameRounds = 3;
 
 const runGamesEngine = (gameDescription, gameData) => {
+  if (gameData.length === 0) {
+    console.log('Error: empty game\'s data');
+
+    return false;
+  }
+
   console.log('Welcome to the Brain Games!');
 
   const name = readlineSync.question('May I have your name?\n');

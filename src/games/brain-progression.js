@@ -9,6 +9,11 @@ const progressionLength = getRandomIntInclusive(minProgressionLength, maxProgres
 
 function getProgression(firstNumber, progressionDiff) {
   const progression = [];
+
+  if (!Number.isInteger(firstNumber) || !Number.isInteger(progressionDiff)) {
+    return progression;
+  }
+
   for (let i = 0; i < progressionLength; i += 1) {
     progression[i] = firstNumber + progressionDiff * i;
   }
@@ -22,10 +27,15 @@ function getGameData() {
     const firstNumber = getRandomIntInclusive(minNumber, maxNumber);
     const progressionStep = getRandomIntInclusive(minNumber, maxNumber);
     const progression = getProgression(firstNumber, progressionStep);
-    const hiddenNumberIndex = getRandomIntInclusive(0, progressionLength - 1);
+
+    if (progression.length === 0) {
+      return data;
+    }
+
+    const hiddenNumberIndex = getRandomIntInclusive(0, progression.length - 1);
 
     let question = `${progression[0]}`;
-    for (let index = 1; index < progressionLength; index += 1) {
+    for (let index = 1; index < progression.length; index += 1) {
       const questionPart = (index === hiddenNumberIndex) ? '..' : progression[index];
       question = `${question} ${questionPart}`;
     }
