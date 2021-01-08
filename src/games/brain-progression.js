@@ -26,7 +26,7 @@ function getGameData() {
   for (let i = 1; i <= gameRounds; i += 1) {
     const firstNumber = getRandomIntInclusive(minNumber, maxNumber);
     const progressionStep = getRandomIntInclusive(minNumber, maxNumber);
-    const progression = getProgression(firstNumber, progressionStep);
+    const progression = getProgression(firstNumber, progressionStep) || [];
 
     if (progression.length === 0) {
       return data;
