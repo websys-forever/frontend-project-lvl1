@@ -1,5 +1,10 @@
 import readlineSync from 'readline-sync';
 
+// Get greatest common divisor
+function gcd(a, b) {
+  return (a % b) ? gcd(b, a % b) : Math.abs(b);
+}
+
 // The maximum is inclusive and the minimum is inclusive
 function getRandomIntInclusive(minNumber, maxNumber) {
   const min = Math.ceil(minNumber);
@@ -40,4 +45,9 @@ const runGamesEngine = (gameDescription, gameData) => {
   return true;
 };
 
-export { getRandomIntInclusive, gameRounds, runGamesEngine };
+export {
+  getRandomIntInclusive,
+  gameRounds,
+  runGamesEngine,
+  gcd,
+};
