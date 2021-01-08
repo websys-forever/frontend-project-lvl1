@@ -15,7 +15,7 @@ function getProgression(firstNumber, progressionDiff) {
   }
 
   for (let i = 0; i < progressionLength; i += 1) {
-    progression[i] = firstNumber + progressionDiff * i;
+    progression[i] = firstNumber + (progressionDiff * i);
   }
 
   return progression;
